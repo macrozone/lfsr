@@ -4,6 +4,7 @@
 
 <body>
   {{> controls}}
+  <a href="https://github.com/macrozone/lfsr"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 </body>
 
 <template name="controls">
@@ -13,18 +14,24 @@
 <div class="btn-group">
   <button class="btn btn-default step" ><span class="glyphicon glyphicon-step-forward"></span> step</button>
   <button class="btn btn-default run" ><span class="glyphicon glyphicon-forward"></span> run</button>
+  <button class="btn btn-default reset" ><span class="glyphicon glyphicon-off"></span> reset</button>
   </div>
 
 
   {{>lfsr}}
+  {{>chart}}
 </div>
 </template>
 
+<template name="chart">
+<div class="chart"></div>
+</template>
 
 <template name="lfsr">
 
 
 <div class="lfsr">
+{{#isolate}} 
 <div class="mashine">
 	<span class="glyphicon glyphicon-cog"></span>
 	
@@ -51,6 +58,11 @@
 {{/each}}
 
 </div>
+{{/isolate}} 
+
+
 </div>
+
+
 
 </template>
