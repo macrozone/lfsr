@@ -1,64 +1,84 @@
 <head>
-  <title>lfsr</title>
+	<title>lfsr</title>
 </head>
 
 <body>
-  {{> controls}}
-  <a href="https://github.com/macrozone/lfsr"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+	{{> app}}
+	<a href="https://github.com/macrozone/lfsr"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 </body>
 
-<template name="controls">
-<div class="container">
-  <h1>LFSR</h1>
-  
-<div class="btn-group">
-  <button class="btn btn-default step" ><span class="glyphicon glyphicon-step-forward"></span> step</button>
-  <button class="btn btn-default run" ><span class="glyphicon glyphicon-forward"></span> run</button>
-  <button class="btn btn-default reset" ><span class="glyphicon glyphicon-off"></span> reset</button>
-  </div>
+<template name="app">
 
+	<div class="container">
+		<h1>LFSR</h1>
+		{{>setup}}
+		{{>controls}}
 
-  {{>lfsr}}
-  {{>chart}}
+		{{>lfsr}}
+		{{>chart}}
+	</div>
+</template>
+
+<template name="setup">
+<form class="form-inline" role="form">
+<div class="form-group">
+<label for="bits">bits</label><input placeholder="bits" class="bits form-control"  type="text" value="{{setupBits}}"/>
 </div>
+<div class="form-group">
+<label for="ops">ops</label><input placeholder="ops"class="ops form-control" type="text" value="{{setupOps}}"/>
+</div>
+</form>
+
+
+</template>
+
+<template name="controls">
+<div class="btn-group controls">
+			<button class="btn btn-default step" ><span class="glyphicon glyphicon-step-forward"></span> step</button>
+			<button class="btn btn-default run" ><span class="glyphicon glyphicon-forward"></span> run</button>
+			<button class="btn btn-default reset" ><span class="glyphicon glyphicon-off"></span> reset</button>
+		</div>
+
 </template>
 
 <template name="chart">
-<div class="chart"></div>
+	<div class="chart"></div>
 </template>
+
+
 
 <template name="lfsr">
 
 
-<div class="lfsr">
-{{#isolate}} 
-<div class="mashine">
-	<span class="glyphicon glyphicon-cog"></span>
-	
-{{#each key_value lfsr.bits}}
+	<div class="lfsr">
+		{{#isolate}} 
+		<div class="mashine">
+			<span class="glyphicon glyphicon-cog"></span>
 
-	 <span class="glyphicon glyphicon-arrow-left"></span>
-	{{arrayItem lfsr.ops key -1}}
+			{{#each key_value lfsr.bits}}
 
-	{{#if value}}
-		<span class="label label-success">1</span>
-	{{else}}
-		<span class="label label-warning">0</span>
-	{{/if}}
-	</span>
+			<span class="glyphicon glyphicon-arrow-left"></span>
+			{{arrayItem lfsr.ops key -1}}
 
-	
-{{/each}}
+			{{#if value}}
+			<span class="label label-success">1</span>
+			{{else}}
+			<span class="label label-warning">0</span>
+			{{/if}}
+		</span>
 
-</div>
- <span class="glyphicon glyphicon-arrow-down"></span>
-<div class="sequence">
-{{#each sequence}}
-	<span>{{this}}</span>
-{{/each}}
 
-</div>
-{{/isolate}} 
+		{{/each}}
+
+	</div>
+	<span class="glyphicon glyphicon-arrow-down"></span>
+	<div class="sequence">
+		{{#each sequence}}
+		<span>{{this}}</span>
+		{{/each}}
+
+	</div>
+	{{/isolate}} 
 
 
 </div>

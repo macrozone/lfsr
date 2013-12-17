@@ -15,6 +15,8 @@
 
 		doOp: (op, bit, overflowBit) ->
 			switch op
-				when 'id' then bit
+				
 				when 'not' then !bit
 				when 'xor' then (!bit) != (!overflowBit)
+				when 'id' then bit
+				else bit # like id
